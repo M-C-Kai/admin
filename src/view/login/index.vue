@@ -1,10 +1,10 @@
 <!--
- * @Descripttion: 
+ * @Descripttion: 登录页面
  * @version: 
  * @Author: Kail
  * @Date: 2021-07-27 09:20:33
  * @LastEditors: Kail
- * @LastEditTime: 2021-08-09 16:53:11
+ * @LastEditTime: 2021-08-30 15:59:11
 -->
 <template>
   <div class="content" :style="{background:check?'#000000':'#ffffff'}">
@@ -75,28 +75,20 @@
 </template>
 
 <script>
-import {login} from '@/api/login'
+// import {login} from '@/api/login'
 export default {
   data(){
     return{
-      check:true,
-      userName:'',
-      userPsw:''
+      check: true,
+      userName: '',
+      userPsw: ''
     }
   },
-  methods:{
+  methods: {
     login(){
-      let data = {name:this.userName,psw:this.userPsw}
-      login(data).then(res=>{
-        if(res.data.state != 200){
-          this.$notify.error({
-          title: '登录失败',
-          message: res.data.message,
-          duration:1000,
-        })
-        }else{
+      let data = {name: this.userName,psw: this.userPsw}
+      this.$store.dispatch('Login',data).then(()=>{
           this.$router.push('/index')
-        }
       })
     }
   }

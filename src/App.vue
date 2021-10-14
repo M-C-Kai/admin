@@ -3,8 +3,8 @@
  * @version:
  * @Author: Kail
  * @Date: 2021-05-25 16:24:15
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-10 09:04:25
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-10-14 15:13:16
 -->
 <template>
   <div id="app">
@@ -29,15 +29,16 @@
 </template>
 
 <script>
-import adminNav from '@/view/components/NavMenu'
+import adminNav from '@/view/components/nav'
 import topNav from '@/view/components/top'
+import { mapState} from "vuex";
 export default {
   name: 'App',
   components: {
     adminNav: adminNav,
     topNav
   },
-  watch:{
+  watch: {
     $route(to){
       if(to.path == '/'){
         this.adminNavStatus = false
@@ -48,7 +49,26 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState({
+      user: state=>state.user
+    })
+  },
   created(){
+    
+    // let token = this.$cookies.get('token')
+    // if(token){
+
+    // }
+
+    this.$cookies.set('keyName','你的名字')
+    console.log(this.$cookies.get('keyName')); 
+    this.$store.dispatch("GetUserInfo","user").then(()=>{
+      console.log('处理成功');
+    }).catch(()=>{
+      console.log('处理失败');
+    })
+    console.log(this.user);
     if(this.$route.path == '/'){
         this.adminNavStatus = false
         this.navStatus = false
@@ -61,13 +81,10 @@ export default {
     return {
       // status
       adminNavStatus: true,
-      navStatus:true,
+      navStatus: true,
       // data
     }
   },
-  // created () {
-  //   console.log(process.env)
-  // },
   methods: {
     _adminNav () {
       this.adminNavStatus = !this.adminNavStatus

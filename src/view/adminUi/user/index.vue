@@ -1,10 +1,10 @@
 <!--
- * @Descripttion: 
+ * @Descripttion: 用户菜单栏
  * @version: 
  * @Author: Kail
  * @Date: 2021-08-09 16:36:25
  * @LastEditors: Kail
- * @LastEditTime: 2021-08-10 09:03:48
+ * @LastEditTime: 2021-08-30 14:45:39
 -->
 <template>
   <div class="Wd_Layout">
@@ -30,12 +30,11 @@ import {getUserList} from '@/api/adminUi/user/index'
 export default {
   data(){
     return{
-      UserList:[]
+      UserList: []
     }
   },
   mounted(){
     getUserList().then(res=>{
-      console.log(res)
       this.UserList = res.data.data
     })
   }

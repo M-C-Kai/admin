@@ -4,7 +4,7 @@
  * @Author: Kail
  * @Date: 2021-07-26 15:14:06
  * @LastEditors: Kail
- * @LastEditTime: 2021-07-26 16:18:02
+ * @LastEditTime: 2021-08-30 14:46:06
 -->
 <template>
   <div :class="ClassName" :id='id' :style="{width:width,height:height}"></div>
@@ -12,22 +12,22 @@
 
 <script>
 export default {
-  props:{
-    id:{type:String,default:'mychart'},
-    ClassName:{type:String,default:'mychart'},
-    option:{type:Object,default:()=>{return {}}},
-    width:{type:String,default:'mychart'},
-    height:{type:String,default:'mychart'}
+  props: {
+    id: {type: String,default: 'mychart'},
+    ClassName: {type: String,default: 'mychart'},
+    option: {type: Object,default: ()=>{return {}}},
+    width: {type: String,default: 'mychart'},
+    height: {type: String,default: 'mychart'}
   },
   data(){
     return{
-      chart:null
+      chart: null
     }
   },
   mounted(){
     this.initChart()
   },
-  methods:{
+  methods: {
     initChart(){
         let myChart = this.$echarts.init(document.getElementById(this.id))
         myChart.setOption(this.option)

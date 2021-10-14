@@ -4,7 +4,7 @@
  * @Author: Kail
  * @Date: 2021-05-25 16:24:15
  * @LastEditors: Kail
- * @LastEditTime: 2021-07-26 17:47:22
+ * @LastEditTime: 2021-08-30 11:45:13
 -->
 <template>
   <div class="content">
@@ -100,19 +100,19 @@
 </template>
 
 <script>
-import chart from '../../components/echarts.vue'
+import chart from '../components/echarts.vue'
 export default {
-  components:{chart },
+  components: {chart },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      list:[
-        {title:'ssss',content:'awdwd'},
-        {title:'ssss',content:'awdwd'},
-        {title:'ssss',content:'awdwd'},
-        {title:'ssss',content:'awdwd'},
+      list: [
+        {title: 'ssss',content: 'awdwd'},
+        {title: 'ssss',content: 'awdwd'},
+        {title: 'ssss',content: 'awdwd'},
+        {title: 'ssss',content: 'awdwd'},
       ],
-      Corner:{
+      Corner: {
         tooltip: {
             trigger: 'item'
         },
@@ -173,8 +173,6 @@ export default {
           { first_name: 'Jami', last_name: 'Carney', age: 38 }
         ]
     }
-  },
-  mounted(){
   },
   methods: {
      toggleBusy() {

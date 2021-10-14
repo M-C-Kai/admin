@@ -8,10 +8,10 @@
  */
 import axios from 'axios'
 
-const http = axios.create();
+const http = axios.create()
 
 // 请求等待时间
-http.defaults.timeout = 2500;
+http.defaults.timeout = 2500
 
 // 特殊请求加长等待时间
 // instance.get('/',{timeout:5000})
