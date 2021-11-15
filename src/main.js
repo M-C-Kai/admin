@@ -3,8 +3,8 @@
  * @version:
  * @Author: Kail
  * @Date: 2021-07-23 16:45:55
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-30 17:41:44
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-11-08 16:53:02
  */
 import Vue from 'vue'
 import App from './App.vue'
@@ -14,6 +14,7 @@ import ElementUI from 'element-ui'
 import VueParticles from 'vue-particles'
 import * as echarts from 'echarts'
 import VueCookies from 'vue-cookies'
+import VueRippler from "vue-rippler";
 
 // import('@/router/permission')
 
@@ -21,6 +22,7 @@ import VueCookies from 'vue-cookies'
 import { BootstrapVue, IconsPlugin, BootstrapVueIcons } from 'bootstrap-vue'
 // Install BootstrapVue
 Vue.use(BootstrapVue)
+Vue.use(VueRippler);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 Vue.use(BootstrapVueIcons)

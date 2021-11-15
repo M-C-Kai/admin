@@ -4,7 +4,7 @@
  * @Author: Kail
  * @Date: 2021-08-26 10:23:31
  * @LastEditors: lvnini
- * @LastEditTime: 2021-10-13 17:42:17
+ * @LastEditTime: 2021-11-08 18:30:03
 -->
 <template>
   <div class="content">
@@ -29,24 +29,24 @@
 </template>
 
 <script>
-export default {
-  data(){
-    return{
-      textarea: '',
-      Jsontext: ''
-    }
-  },
-  methods: {
-    Json(val){
-      let arry = val.split("\n");
-      let text = ''
-      arry.forEach(item=>{
-        text = text + '"'+item.split(':')[0]+'"'+':'+item.split(':')[1]+'\n'
-      })
-      text.length ? this.Jsontext = text : this.Jsontext = ''
+  export default {
+    data(){
+      return{
+        textarea: '',
+        Jsontext: ''
+      }
+    },
+    methods: {
+      Json(val){
+        let arry = val.split("\n");
+        let text = ''
+        arry.forEach(item=>{
+          text = text + '"'+item.split(':')[0]+'"'+':'+item.split(':')[1]+'\n'
+        })
+        text.length ? this.Jsontext = text : this.Jsontext = ''
+      }
     }
   }
-}
 </script>
 
 <style>

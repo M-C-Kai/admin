@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Kail
  * @Date: 2021-08-30 09:27:57
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-30 09:30:39
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-11-08 18:30:19
 -->
 <template>
   <div class="content">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-export default {
+  export default {
     data() {
       return {
         imageUrl: ''

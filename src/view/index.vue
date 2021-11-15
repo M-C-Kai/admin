@@ -3,8 +3,8 @@
  * @version:
  * @Author: Kail
  * @Date: 2021-05-25 16:24:15
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-30 11:45:13
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-11-08 17:44:08
 -->
 <template>
   <div class="content">
@@ -100,86 +100,86 @@
 </template>
 
 <script>
-import chart from '../components/echarts.vue'
-export default {
-  components: {chart },
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-      list: [
-        {title: 'ssss',content: 'awdwd'},
-        {title: 'ssss',content: 'awdwd'},
-        {title: 'ssss',content: 'awdwd'},
-        {title: 'ssss',content: 'awdwd'},
-      ],
-      Corner: {
-        tooltip: {
+  import chart from '../components/echarts.vue'
+  export default {
+    components: {chart },
+    data () {
+      return {
+        msg: 'Welcome to Your Vue.js App',
+        list: [
+          {title: 'ssss',content: 'awdwd'},
+          {title: 'ssss',content: 'awdwd'},
+          {title: 'ssss',content: 'awdwd'},
+          {title: 'ssss',content: 'awdwd'},
+        ],
+        Corner: {
+          tooltip: {
             trigger: 'item'
-        },
-        legend: {
+          },
+          legend: {
             top: '5%',
             left: 'center'
-        },
-        series: [
+          },
+          series: [
             {
-                name: '访问来源',
-                type: 'pie',
-                radius: ['40%', '70%'],
-                avoidLabelOverlap: false,
+              name: '访问来源',
+              type: 'pie',
+              radius: ['40%', '70%'],
+              avoidLabelOverlap: false,
+              label: {
+                show: false,
+                position: 'center'
+              },
+              emphasis: {
                 label: {
-                    show: false,
-                    position: 'center'
-                },
-                emphasis: {
-                    label: {
-                        show: true,
-                        fontSize: '26',
-                        fontWeight: 'bold'
-                    }
-                },
-                labelLine: {
-                    show: false
-                },
-                data: [
-                    {value: 1048, name: '搜索引擎'},
-                    {value: 735, name: '直接访问'},
-                    {value: 580, name: '邮件营销'},
-                    {value: 484, name: '联盟广告'},
-                    {value: 300, name: '视频广告'}
-                ]
+                  show: true,
+                  fontSize: '26',
+                  fontWeight: 'bold'
+                }
+              },
+              labelLine: {
+                show: false
+              },
+              data: [
+                {value: 1048, name: '搜索引擎'},
+                {value: 735, name: '直接访问'},
+                {value: 580, name: '邮件营销'},
+                {value: 484, name: '联盟广告'},
+                {value: 300, name: '视频广告'}
+              ]
             }
-        ]
-      },
-      Chart: {
-            xAxis: {
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                type: 'line',
-                smooth: true
-            }]
-      },
-      animate: true,
-      isBusy: false,
-       items: [
+          ]
+        },
+        Chart: {
+          xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line',
+            smooth: true
+          }]
+        },
+        animate: true,
+        isBusy: false,
+        items: [
           { first_name: 'Dickerson', last_name: 'MacDonald', age: 40 },
           { first_name: 'Larsen', last_name: 'Shaw', age: 21 },
           { first_name: 'Geneva', last_name: 'Wilson', age: 89 },
           { first_name: 'Jami', last_name: 'Carney', age: 38 }
         ]
-    }
-  },
-  methods: {
-     toggleBusy() {
+      }
+    },
+    methods: {
+      toggleBusy() {
         this.isBusy = !this.isBusy
       }
+    }
   }
-}
 </script>
 <style lang='scss' scoped>
 .content{

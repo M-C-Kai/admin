@@ -4,7 +4,7 @@
  * @Author: Kail
  * @Date: 2021-05-25 16:24:15
  * @LastEditors: lvnini
- * @LastEditTime: 2021-10-14 15:13:16
+ * @LastEditTime: 2021-11-08 17:44:00
 -->
 <template>
   <div id="app">
@@ -14,7 +14,7 @@
     <div style="height:100%">
     <el-row type="flex">
       <el-col :span=" adminNavStatus ? 3 : 0"  v-show="adminNavStatus">
-          <adminNav class="nav_menu"></adminNav>
+        <adminMenu class="nav_menu"></adminMenu>
       </el-col>
       <transition name="content">
       <el-col :span="adminNavStatus ? 21 : 24">
@@ -29,68 +29,71 @@
 </template>
 
 <script>
-import adminNav from '@/view/components/nav'
-import topNav from '@/view/components/top'
-import { mapState} from "vuex";
-export default {
-  name: 'App',
-  components: {
-    adminNav: adminNav,
-    topNav
-  },
-  watch: {
-    $route(to){
-      if(to.path == '/'){
+  import adminMenu from './view/components/global/menu/index.vue'
+  import topNav from '@/view/components/top'
+  import { mapState} from "vuex";
+  import HIDDEN_PATH from '@/config/path.js'
+  export default {
+    name: 'App',
+    components: {
+      topNav,
+      adminMenu
+    },
+    watch: {
+      $route(to){
+        HIDDEN_PATH.forEach(item=>{
+          if(to.path == item.path){
+            this.adminNavStatus = false
+            this.navStatus = item.nav
+          }else{
+            this.adminNavStatus = true
+            this.navStatus = true
+          }
+        })
+      }
+    },
+    computed: {
+    ...mapState({
+      user: state=>state.user
+    })
+    },
+    created(){
+    
+      // let token = this.$cookies.get('token')
+      // if(token){
+
+      // }
+
+      this.$cookies.set('keyName','你的名字')
+      console.log(this.$cookies.get('keyName')); 
+      this.$store.dispatch("GetUserInfo","user").then(()=>{
+        console.log('处理成功');
+      }).catch(()=>{
+        console.log('处理失败');
+      })
+      console.log(this.user);
+      if(this.$route.path == '/'){
         this.adminNavStatus = false
         this.navStatus = false
       }else{
         this.adminNavStatus = true
         this.navStatus = true
       }
-    }
-  },
-  computed: {
-    ...mapState({
-      user: state=>state.user
-    })
-  },
-  created(){
-    
-    // let token = this.$cookies.get('token')
-    // if(token){
-
-    // }
-
-    this.$cookies.set('keyName','你的名字')
-    console.log(this.$cookies.get('keyName')); 
-    this.$store.dispatch("GetUserInfo","user").then(()=>{
-      console.log('处理成功');
-    }).catch(()=>{
-      console.log('处理失败');
-    })
-    console.log(this.user);
-    if(this.$route.path == '/'){
-        this.adminNavStatus = false
-        this.navStatus = false
-    }else{
-        this.adminNavStatus = true
-        this.navStatus = true
-    }
-  },
-  data () {
-    return {
-      // status
-      adminNavStatus: true,
-      navStatus: true,
+    },
+    data () {
+      return {
+        // status
+        adminNavStatus: true,
+        navStatus: true,
       // data
-    }
-  },
-  methods: {
-    _adminNav () {
-      this.adminNavStatus = !this.adminNavStatus
+      }
+    },
+    methods: {
+      _adminNav () {
+        this.adminNavStatus = !this.adminNavStatus
+      }
     }
   }
-}
 </script>
 <style>
 .Wd_Layout{
@@ -122,6 +125,10 @@ button{
   color: #2c3e50;
   background: #f2f2f2;
 }
+.content{
+  width: 100%;
+  height: 100%;
+}
 </style>
 <style lang='scss' scoped>
 *{
@@ -129,16 +136,18 @@ button{
   padding: 0;
 }
 .nav_menu{
-  background: red;
   height: 100%;
+  overflow:hidden;
 }
 .view_Content{
-  // padding-top: 10px;
   transform: .4s;
+  height: 100%;
+  width: 100%;
 }
 .content{
   background: #ffff;
-  // overflow: hidden;
 }
-
+.el-col{
+  min-height:calc(100vh - 70px);
+}
 </style>

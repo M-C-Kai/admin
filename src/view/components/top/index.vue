@@ -3,8 +3,8 @@
  * @version:
  * @Author: Kail
  * @Date: 2021-07-22 10:15:10
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-09 17:31:26
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-11-08 18:29:46
 -->
 <template>
   <div class="content">
@@ -52,13 +52,13 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    hiddenMenu () {
-      this.$emit('adminNav')
+  export default {
+    methods: {
+      hiddenMenu () {
+        this.$emit('adminNav')
+      }
     }
   }
-}
 </script>
 <style>
 ._UserMenu{
@@ -69,7 +69,7 @@ export default {
 <style lang="scss" scoped>
   .content{
     .top-nav{
-      width:100vw;
+      width:calc(100vw - 17px) ;
       display: flex;
       flex-direction: row;
       align-items: center;

@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Kail
  * @Date: 2021-08-09 16:36:25
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-30 14:45:39
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-11-08 18:29:55
 -->
 <template>
   <div class="Wd_Layout">
@@ -26,19 +26,19 @@
 </template>
 
 <script>
-import {getUserList} from '@/api/adminUi/user/index'
-export default {
-  data(){
-    return{
-      UserList: []
+  import {getUserList} from '@/api/adminUi/user/index'
+  export default {
+    data(){
+      return{
+        UserList: []
+      }
+    },
+    mounted(){
+      getUserList().then(res=>{
+        this.UserList = res.data.data
+      })
     }
-  },
-  mounted(){
-    getUserList().then(res=>{
-      this.UserList = res.data.data
-    })
   }
-}
 </script>
 
 <style>

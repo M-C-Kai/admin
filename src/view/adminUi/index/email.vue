@@ -3,13 +3,13 @@
  * @version: 
  * @Author: Kail
  * @Date: 2021-08-26 09:29:46
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-30 14:45:55
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-11-08 18:30:29
 -->
 <template>
     <div>
       <div class="top">
-        <el-button class="button" @click="addEmail">添加邮件配置</el-button>
+        <el-button class="button"  type="primary" @click="addEmail">添加邮件配置</el-button>
       </div>
       <el-table
         :data="tableData"
@@ -83,36 +83,55 @@
 
 
 <script>
-import {getEmail,updataEmail,send,addEmail} from '@/api/adminUi/index/email'
-export default {
-  data() {
-    return {
-      // data
-      tableData: [],
-      form: {},
-      // status
-      dialogForm: false,
-      formState: false,
-    }
-  },
-  async mounted(){
-    let res = await getEmail()
-    this.tableData = res.data.data
-    console.log(this.tableData);
-  },
-  methods: {
-    updataEmail(data){
-      this.form = data
-      this.dialogForm = true
-      this.formState = false
+  import {getEmail,updataEmail,send,addEmail} from '@/api/adminUi/index/email'
+  export default {
+    data() {
+      return {
+        // data
+        tableData: [],
+        form: {},
+        // status
+        dialogForm: false,
+        formState: false,
+      }
     },
-    async updata(){
-      if(this.formState){
-        let res = await addEmail(this.form)
+    async mounted(){
+      let res = await getEmail()
+      this.tableData = res.data.data
+      console.log(this.tableData);
+    },
+    methods: {
+      updataEmail(data){
+        this.form = data
+        this.dialogForm = true
+        this.formState = false
+      },
+      async updata(){
+        if(this.formState){
+          let res = await addEmail(this.form)
+          console.log(res.data.code);
+          if(res.data.code == 200){
+            this.dialogForm = false
+            this.$notify({
+              title: '成功',
+              message: res.data.message,
+              type: 'success',
+              duration: 1000,
+            })
+          }else{
+            this.$notify.error({
+              title: '修改失败',
+              message: res.data.message,
+              duration: 1000,
+            })
+          }
+          return false
+        }
+        let res = await updataEmail(this.form)
         console.log(res.data.code);
         if(res.data.code == 200){
           this.dialogForm = false
-            this.$notify({
+          this.$notify({
             title: '成功',
             message: res.data.message,
             type: 'success',
@@ -125,51 +144,32 @@ export default {
             duration: 1000,
           })
         }
-        return false
-      }
-      let res = await updataEmail(this.form)
-      console.log(res.data.code);
-      if(res.data.code == 200){
-        this.dialogForm = false
-          this.$notify({
-          title: '成功',
-          message: res.data.message,
-          type: 'success',
-          duration: 1000,
+      },
+      sendEmail(id){
+        send({id: id}).then(res=>{
+          if(res.data.code == 200){
+            this.$notify({
+              title: '成功',
+              message: res.data.message,
+              type: 'success',
+              duration: 1000,
+            })
+          }else{
+            this.$notify.error({
+              title: '失败',
+              message: res.data.message,
+              duration: 1000,
+            })
+          }
         })
-      }else{
-        this.$notify.error({
-          title: '修改失败',
-          message: res.data.message,
-          duration: 1000,
-        })
-      }
-    },
-    sendEmail(id){
-      send({id: id}).then(res=>{
-        if(res.data.code == 200){
-          this.$notify({
-            title: '成功',
-            message: res.data.message,
-            type: 'success',
-            duration: 1000,
-          })
-        }else{
-          this.$notify.error({
-            title: '失败',
-            message: res.data.message,
-            duration: 1000,
-          })
-        }
-      })
-    },
-    addEmail(){
-      this.form = {}
-      this.dialogForm = true
-      this.formState = true
-    },
+      },
+      addEmail(){
+        this.form = {}
+        this.dialogForm = true
+        this.formState = true
+      },
+    }
   }
-}
 </script>
 
 <style scoped>
@@ -178,7 +178,7 @@ export default {
   padding: 5px;
 }
 .button{
-  margin-left: auto;
-  margin-right: 15px;
+  margin-left: -4px;
+  margin-bottom: 5px;
 }
 </style>

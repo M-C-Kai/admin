@@ -3,8 +3,8 @@
  * @version: 
  * @Author: Kail
  * @Date: 2021-07-27 09:20:33
- * @LastEditors: Kail
- * @LastEditTime: 2021-08-30 15:59:11
+ * @LastEditors: lvnini
+ * @LastEditTime: 2021-11-08 18:29:32
 -->
 <template>
   <div class="content" :style="{background:check?'#000000':'#ffffff'}">
@@ -76,23 +76,23 @@
 
 <script>
 // import {login} from '@/api/login'
-export default {
-  data(){
-    return{
-      check: true,
-      userName: '',
-      userPsw: ''
-    }
-  },
-  methods: {
-    login(){
-      let data = {name: this.userName,psw: this.userPsw}
-      this.$store.dispatch('Login',data).then(()=>{
+  export default {
+    data(){
+      return{
+        check: true,
+        userName: '',
+        userPsw: ''
+      }
+    },
+    methods: {
+      login(){
+        let data = {name: this.userName,psw: this.userPsw}
+        this.$store.dispatch('Login',data).then(()=>{
           this.$router.push('/index')
-      })
+        })
+      }
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>
